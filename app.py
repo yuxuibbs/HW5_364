@@ -140,7 +140,8 @@ def all_lists():
 def one_list(ident):
     form = UpdateButtonForm()
     lst = TodoList.query.filter_by(id=ident).first()
-    items = lst.items.all()
+    # additional feature: sort by priority
+    items = lst.items.order_by(TodoItem.priority).all()
     return render_template('list_tpl.html',todolist=lst,items=items,form=form)
 # TODO 364: Update the one_list view function and the list_tpl.html view file so that there is an Update button next to each todolist item, and the priority integer of that item can be updated. (This is also addressed in later TODOs.)
 # HINT: These template updates are minimal, but that small update(s) make(s) a big change in what you can do in the app! Check out the examples from previous classes for help.
